@@ -14,7 +14,7 @@ public static schema_name: string = 'Pedido';
     type: Number,
     required: true
   })
-  pedido_id: number;
+  pedido_id: Number;
 
   @Prop({
     type: Array<Comida>,
@@ -27,5 +27,24 @@ public static schema_name: string = 'Pedido';
     required: true
   })
   cliente: Number;
+
+  @Prop({
+    type: String,
+    required: true
+  })
+  direccion: string;
+
+  @Prop({
+    type: Date,
+    required: true,
+    default: Date.now
+  })
+  fecha: Date;
+
+  @Prop({
+    type: String,
+    required: true
+  })
+  metodoPago: string;
 }
 export const PedidoSchema = SchemaFactory.createForClass(Pedido);
