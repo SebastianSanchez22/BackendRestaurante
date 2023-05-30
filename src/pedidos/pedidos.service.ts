@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePedidoDto } from './dto/create-pedido.dto';
 import { UpdatePedidoDto } from './dto/update-pedido.dto';
+import { Pedido } from './entities/pedido.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class PedidosService {
-  create(createPedidoDto: CreatePedidoDto) {
-    return 'This action adds a new pedido';
+  constructor(@InjectModel('Pedido') private readonly pedidoModel: Model<Pedido>) {}
+
+  async create(createPedidoDto: CreatePedidoDto) {
+    const newPedido = new this.pedidoModel(createPedidoDto);
+    return await newPedido.save();
   }
 
-  findAll() {
-    return `This action returns all pedidos`;
+  async findAll() {
+    return await this.pedidoModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pedido`;
+  async findOne(id: number) {
+    return await this.pedidoModel.findOne({pedido_id: id}).exec();
   }
 
-  update(id: number, updatePedidoDto: UpdatePedidoDto) {
-    return `This action updates a #${id} pedido`;
+  async update(id: number, updatePedidoDto: UpdatePedidoDto) {
+    await this.pedidoModel.updateOne({pedido_id: id}, updatePedidoDto).exec();
+    return this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pedido`;
+  async remove(id: number) {
+    return await this.pedidoModel.deleteOne({pedido_id: id}).exec();
   }
 }
