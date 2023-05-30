@@ -2,33 +2,34 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ComidasService } from './comidas.service';
 import { CreateComidaDto } from './dto/create-comida.dto';
 import { UpdateComidaDto } from './dto/update-comida.dto';
+import { Comida } from './entities/comida.entity';
 
 @Controller('comidas')
 export class ComidasController {
   constructor(private readonly comidasService: ComidasService) {}
 
   @Post()
-  create(@Body() createComidaDto: CreateComidaDto) {
+  async create(@Body() createComidaDto: CreateComidaDto) : Promise<Comida> {
     return this.comidasService.create(createComidaDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() : Promise<Comida[]> {
     return this.comidasService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<Comida> {
     return this.comidasService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateComidaDto: UpdateComidaDto) {
+  async update(@Param('id') id: string, @Body() updateComidaDto: UpdateComidaDto): Promise<Comida>{
     return this.comidasService.update(+id, updateComidaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.comidasService.remove(+id);
+    this.comidasService.remove(+id);
   }
 }
