@@ -26,12 +26,6 @@ public static schema_name: string = 'Cliente';
     required: true
   })
   telefono: number;
-
-  @Prop({
-    type: String,
-    required: true
-  })
-  filtro: string;
 }
 
 export const ClienteSchema = SchemaFactory.createForClass(Cliente);
