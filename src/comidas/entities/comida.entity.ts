@@ -9,15 +9,9 @@ export class Comida {
 public static schema_name: string = 'Comida';
 
   @Prop({
-    index: {unique:true},
-    type: Number,
-    required: true
-  })
-  comida_id: number;
-
-  @Prop({
     type: String,
-    required: true
+    required: true,
+    unique: true,
   })
   nombre: string;
 

@@ -19,16 +19,16 @@ export class ComidasService {
     return await this.comidaModel.find().exec();
   }
 
-  async findOne(id: number) {
-    return await this.comidaModel.findOne({comida_id: id}).exec();
+  async findOne(id: string) {
+    return await this.comidaModel.findOne({id: id}).exec();
   }
 
-  async update(id: number, updateComidaDto: UpdateComidaDto) {
-    await this.comidaModel.updateOne({comida_id: id}, updateComidaDto).exec();
+  async update(id: string, updateComidaDto: UpdateComidaDto) {
+    await this.comidaModel.updateOne({id: id}, updateComidaDto).exec();
     return this.findOne(id);
   }
 
-  async remove(id: number) {
-    return await this.comidaModel.deleteOne({comida_id: id}).exec();
+  async remove(id: string) {
+    return await this.comidaModel.deleteOne({id: id}).exec();
   }
 }

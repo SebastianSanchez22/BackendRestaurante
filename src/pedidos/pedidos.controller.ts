@@ -20,16 +20,16 @@ export class PedidosController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Pedido> {
-    return this.pedidosService.findOne(+id);
+    return this.pedidosService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updatePedidoDto: UpdatePedidoDto): Promise<Pedido>{
-    return this.pedidosService.update(+id, updatePedidoDto);
+    return this.pedidosService.update(id, updatePedidoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    this.pedidosService.remove(+id);
+    this.pedidosService.remove(id);
   }
 }

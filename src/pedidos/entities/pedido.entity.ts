@@ -1,5 +1,6 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Cliente } from 'src/clientes/entities/cliente.entity';
 import { Comida } from 'src/comidas/entities/comida.entity';
 
 export type PedidoDocument = HydratedDocument<Pedido>;
@@ -10,23 +11,16 @@ export class Pedido {
 public static schema_name: string = 'Pedido';
 
   @Prop({
-    index: {unique:true},
-    type: Number,
-    required: true
-  })
-  pedido_id: Number;
-
-  @Prop({
     type: Array<Comida>,
     required: true
   })
   comidas: Array<Comida>;
 
   @Prop({
-    type: Number,
+    type: Cliente,
     required: true
   })
-  cliente: Number;
+  cliente: Cliente;
 
   @Prop({
     type: String,

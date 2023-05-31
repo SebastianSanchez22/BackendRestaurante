@@ -20,16 +20,16 @@ export class ClientesController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Cliente> {
-    return this.clienteService.findOne(+id);
+    return this.clienteService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateClienteDto: UpdateClienteDto): Promise<Cliente>{
-    return this.clienteService.update(+id, updateClienteDto);
+    return this.clienteService.update(id, updateClienteDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    this.clienteService.remove(+id);
+    this.clienteService.remove(id);
   }
 }

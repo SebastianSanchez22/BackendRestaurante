@@ -20,16 +20,16 @@ export class ComidasController {
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Comida> {
-    return this.comidasService.findOne(+id);
+    return this.comidasService.findOne(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateComidaDto: UpdateComidaDto): Promise<Comida>{
-    return this.comidasService.update(+id, updateComidaDto);
+    return this.comidasService.update(id, updateComidaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    this.comidasService.remove(+id);
+    this.comidasService.remove(id);
   }
 }

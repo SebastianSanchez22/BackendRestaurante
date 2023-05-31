@@ -18,16 +18,16 @@ export class PedidosService {
     return await this.pedidoModel.find().exec();
   }
 
-  async findOne(id: number) {
-    return await this.pedidoModel.findOne({pedido_id: id}).exec();
+  async findOne(id: string) {
+    return await this.pedidoModel.findOne({id: id}).exec();
   }
 
-  async update(id: number, updatePedidoDto: UpdatePedidoDto) {
-    await this.pedidoModel.updateOne({pedido_id: id}, updatePedidoDto).exec();
+  async update(id: string, updatePedidoDto: UpdatePedidoDto) {
+    await this.pedidoModel.updateOne({id: id}, updatePedidoDto).exec();
     return this.findOne(id);
   }
 
-  async remove(id: number) {
-    return await this.pedidoModel.deleteOne({pedido_id: id}).exec();
+  async remove(id: string) {
+    return await this.pedidoModel.deleteOne({id: id}).exec();
   }
 }

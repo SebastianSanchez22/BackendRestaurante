@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { Cliente } from './entities/cliente.entity';
@@ -16,19 +16,28 @@ export class ClientesService {
   }
 
   async findAll() {
-    return await this.clienteModel.find().exec();
+    const findAllClientes = await this.clienteModel.find().exec();
+    if(!findAllClientes) throw new NotFoundException('No hay clientes registrados')
+    return findAllClientes;
   }
 
-  async findOne(id: number) {
-    return await this.clienteModel.findOne({cliente_id: id}).exec();
+  async findOne(nombre: string) {
+    const findCliente = await this.clienteModel.findOne({nombre: nombre}).exec()
+    if(!findCliente) throw new NotFoundException(`Cliente con nombre:${nombre} no encontrado`)
+    return findCliente;
   }
 
-  async update(id: number, updateClienteDto: UpdateClienteDto) {
-    await this.clienteModel.updateOne({cliente_id: id}, updateClienteDto).exec();
-    return this.findOne(id);
+  async update(nombre: string, updateClienteDto: UpdateClienteDto) {
+    const updateCliente = await this.clienteModel.updateOne({nombre: nombre}, updateClienteDto).exec();
+    if(!updateCliente) throw new NotFoundException(`Cliente con nombre:${nombre} no encontrado`)
+    return this.findOne(updateClienteDto.nombre);
   }
 
-  async remove(id: number) {
-    return await this.clienteModel.deleteOne({cliente_id: id}).exec();
+  async remove(nombre: string) {
+    const removeCliente = await this.clienteModel.deleteOne({nombre: nombre}).exec();
+    if(!removeCliente) throw new NotFoundException(`Cliente con nombre:${nombre} no encontrado`)
+    return removeCliente;
   }
 }
+
+

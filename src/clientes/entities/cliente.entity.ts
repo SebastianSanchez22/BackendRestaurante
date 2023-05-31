@@ -9,15 +9,9 @@ export class Cliente {
 public static schema_name: string = 'Cliente';
 
   @Prop({
-    index: {unique:true},
-    type: Number,
-    required: true
-  })
-  cliente_id: number;
-
-  @Prop({
     type: String,
-    required: true
+    required: true,
+    unique: true,
   })
   nombre: string;
 
