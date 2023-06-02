@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber} from 'class-validator';
 import { Comida } from 'src/comidas/entities/comida.entity';
 import { Cliente } from 'src/clientes/entities/cliente.entity';
 
@@ -14,7 +14,7 @@ export class CreatePedidoDto {
     @IsNotEmpty()
     readonly direccion: string;
 
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
-    readonly metodoPago: string;
+    readonly valorTotal: Number;
 }

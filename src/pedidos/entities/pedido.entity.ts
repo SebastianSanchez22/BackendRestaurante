@@ -23,22 +23,10 @@ public static schema_name: string = 'Pedido';
   cliente: Cliente;
 
   @Prop({
-    type: String,
+    type: Number,
     required: true
   })
-  direccion: string;
-
-  @Prop({
-    type: Date,
-    required: true,
-    default: Date.now
-  })
-  fecha: Date;
-
-  @Prop({
-    type: String,
-    required: true
-  })
-  metodoPago: string;
+  valorTotal: Number;
+  
 }
 export const PedidoSchema = SchemaFactory.createForClass(Pedido);

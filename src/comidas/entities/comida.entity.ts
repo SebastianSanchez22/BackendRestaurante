@@ -13,19 +13,32 @@ public static schema_name: string = 'Comida';
     required: true,
     unique: true,
   })
-  nombre: string;
+  name: string;
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  category: string;
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  image: string;
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  price: string;
 
   @Prop({
     type: Number,
     required: true
   })
-  valor: number;
+  value: number;
 
-  @Prop({
-    type: String,
-    required: true
-  })
-  filtro: string;
 }
 
 export const ComidaSchema = SchemaFactory.createForClass(Comida);

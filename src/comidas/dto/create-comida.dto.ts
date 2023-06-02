@@ -4,14 +4,22 @@ export class CreateComidaDto {
 
     @IsString()
     @IsNotEmpty()
-    readonly nombre: string;
-
-    @IsNumber()
-    @IsNotEmpty()
-    readonly valor: number;
+    readonly name: string;
 
     @IsString()
     @IsNotEmpty()
-    readonly filtro: string;
+    readonly category: string;
+
+    @IsString()
+    @IsNotEmpty()
+    readonly image: string;
+
+    @IsString()
+    @IsNotEmpty()
+    readonly price: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    readonly value: number;
 
 }
