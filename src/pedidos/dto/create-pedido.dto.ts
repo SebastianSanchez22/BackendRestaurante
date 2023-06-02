@@ -1,18 +1,15 @@
-import { IsNotEmpty, IsString, IsNumber} from 'class-validator';
-import { Comida } from 'src/comidas/entities/comida.entity';
-import { Cliente } from 'src/clientes/entities/cliente.entity';
+import { IsNotEmpty, IsNumber} from 'class-validator';
+import { CreateClienteDto } from 'src/clientes/dto/create-cliente.dto';;
+import { InterfazComidaDto } from 'src/comidas/dto/interfazComida.dto';
 
 export class CreatePedidoDto {
 
     @IsNotEmpty()
-    readonly comidas: Array<Comida>;
+    readonly comidas: Array<InterfazComidaDto>;
 
     @IsNotEmpty()
-    readonly cliente: Cliente;
-
-    @IsString()
-    @IsNotEmpty()
-    readonly direccion: string;
+    readonly cliente: CreateClienteDto;
+    // Cliente trae nombre y telefono
 
     @IsNumber()
     @IsNotEmpty()
